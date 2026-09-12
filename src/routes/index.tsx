@@ -79,7 +79,7 @@ const criteria = [
   { label: "Problem-solving", weight: "★", tone: "mint" },
 ];
 
-const stagedResumes = [
+const stagedResumes: [string, string, string, string][] = [
   ["AS", "Aditi_Sharma_Resume.pdf", "142 KB", "Extracted 4 projects"],
   ["RM", "Rohan_Mehta_CV_2025.pdf", "188 KB", "Extracted 6 skills"],
   ["PN", "Priya_Nair_FullStack.pdf", "210 KB", "Extracted 3 internships"],
