@@ -20,6 +20,7 @@ import {
   LockKeyhole,
   MessageCircle,
   Paperclip,
+  ClipboardPaste,
   Pencil,
   Plus,
   Search,
