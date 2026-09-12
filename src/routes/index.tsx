@@ -319,8 +319,6 @@ function SetupView({
   return (
     <div className="py-8 md:py-10">
       <section className="relative mx-auto max-w-4xl text-center">
-        <span className="hidden stamp stamp-left md:block">V2.4 tactile engine</span>
-        <span className="hidden note note-right lg:flex"><span className="pin-dot" /> Strictly explainable</span>
         <p className="eyebrow">A better first read</p>
         <h1 className="font-hand text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">Find the right people, without the pile<span className="text-coral">!</span></h1>
         <div className="mx-auto mt-1 h-3 max-w-xl squiggle" />
