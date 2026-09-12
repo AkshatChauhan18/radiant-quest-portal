@@ -316,6 +316,8 @@ function SetupView({
   onUpload: () => void;
 }) {
   const [activeCriteria, setActiveCriteria] = useState<string[]>(criteria.map((item) => item.label));
+  const [pastingJd, setPastingJd] = useState(false);
+  const [pastedJd, setPastedJd] = useState("");
   return (
     <div className="py-8 md:py-10">
       <section className="relative mx-auto max-w-4xl text-center">
