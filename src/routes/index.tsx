@@ -198,7 +198,7 @@ function InternLoom() {
   const [filter, setFilter] = useState<Filter>("all");
   const [expanded, setExpanded] = useState<number | null>(1);
   const [loadedAll, setLoadedAll] = useState(false);
-  const [files, setFiles] = useState(stagedResumes);
+  const [files, setFiles] = useState<[string, string, string, string][]>(stagedResumes);
   const [notice, setNotice] = useState("");
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
