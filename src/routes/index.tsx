@@ -20,6 +20,7 @@ import {
   LockKeyhole,
   MessageCircle,
   Paperclip,
+  ClipboardPaste,
   Pencil,
   Plus,
   Search,
@@ -316,6 +317,8 @@ function SetupView({
   onUpload: () => void;
 }) {
   const [activeCriteria, setActiveCriteria] = useState<string[]>(criteria.map((item) => item.label));
+  const [pastingJd, setPastingJd] = useState(false);
+  const [pastedJd, setPastedJd] = useState("");
   return (
     <div className="py-8 md:py-10">
       <section className="relative mx-auto max-w-4xl text-center">
@@ -333,12 +336,29 @@ function SetupView({
           <div className="paper-card p-5 pt-9 md:p-7 md:pt-10">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-dashed border-line pb-4">
               <div className="flex items-center gap-2 font-label text-muted"><FileText size={18} className="text-navy" /> Job description</div>
-              <Button variant="outline" size="sm" className="rounded-lg border-2 border-ink bg-paper shadow-chip" onClick={() => alert("Upload a JD PDF to replace the sample role.")}><Paperclip size={15} /> Upload JD PDF</Button>
+              <div className="flex flex-wrap gap-2">
+                <Button variant="outline" size="sm" className={`rounded-lg border-2 border-ink shadow-chip ${pastingJd ? "bg-blue-soft text-navy" : "bg-paper"}`} onClick={() => setPastingJd((v) => !v)}><ClipboardPaste size={15} /> Paste JD text</Button>
+                <Button variant="outline" size="sm" className="rounded-lg border-2 border-ink bg-paper shadow-chip" onClick={() => alert("Upload a JD PDF to replace the sample role.")}><Paperclip size={15} /> Upload JD PDF</Button>
+              </div>
             </div>
+            {pastingJd && (
+              <div className="mt-4 rounded-lg border-2 border-dashed border-line bg-paper p-3">
+                <label htmlFor="jd-paste" className="font-label text-muted">Paste the job description below</label>
+                <textarea
+                  id="jd-paste"
+                  value={pastedJd}
+                  onChange={(event) => setPastedJd(event.target.value)}
+                  placeholder="e.g. We're hiring a Junior Full Stack Developer Intern with React, Node.js, and REST API experience..."
+                  rows={5}
+                  className="mt-2 w-full resize-y rounded-md border-2 border-line bg-paper p-3 text-sm leading-relaxed outline-none focus:border-navy"
+                />
+                <p className="mt-1 text-xs text-muted">{pastedJd.trim() ? `${pastedJd.trim().split(/\s+/).length} words pasted — will be analyzed with your criteria.` : "Tip: include must-have skills and experience requirements for sharper scoring."}</p>
+              </div>
+            )}
             <div className="mt-5">
               <h2 className="font-display text-2xl font-bold">Junior Full Stack Developer Intern</h2>
               <p className="mt-1 font-semibold text-navy">TechNova Solutions</p>
-              <p className="mt-4 leading-relaxed text-muted">Looking for a curious junior developer who loves building user interfaces and RESTful APIs. You&apos;ll collaborate on our core web platform using modern web technologies, participating in architecture reviews, code testing, and feature rollouts.</p>
+              <p className="mt-4 leading-relaxed text-muted">{pastedJd.trim() ? pastedJd.trim() : <>Looking for a curious junior developer who loves building user interfaces and RESTful APIs. You&apos;ll collaborate on our core web platform using modern web technologies, participating in architecture reviews, code testing, and feature rollouts.</>}</p>
             </div>
             <div className="mt-6 rounded-lg border-2 border-line bg-blue-soft/50 p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
